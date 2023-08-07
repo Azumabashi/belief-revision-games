@@ -9,3 +9,7 @@ type
     connection*: seq[seq[bool]]
     atomicFormulae*: seq[PropLogicFormula]
     revisionOperators*: seq[proc (self: PropLogicFormula, context: seq[PropLogicFormula]): PropLogicFormula]
+  RevisionOperatorConfig*[T] = object
+    distance*: proc(x, y: PropLogicFormula): float
+    filter*: proc(x: seq[float]): T
+    cmp*: proc(x, y: T): int

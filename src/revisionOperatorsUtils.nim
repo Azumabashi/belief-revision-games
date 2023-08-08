@@ -3,8 +3,8 @@ import types
 import sequtils
 import algorithm
 
-proc dist(
-  config: RevisionOperatorConfig,
+proc dist[T](
+  config: RevisionOperatorConfig[T],
   omega: Interpretation,
   formula: PropLogicFormula,
   interpretations: seq[Interpretation]
@@ -14,15 +14,15 @@ proc dist(
   return dists
 
 proc df[T](
-  config: RevisionOperatorConfig,
+  config: RevisionOperatorConfig[T],
   omega: Interpretation,
   contexts: seq[PropLogicFormula],
   interpretations: seq[Interpretation]
 ): seq[T] =
-  contexts.mapIt(config.dist(omega, it, interpretations)).filter()
+  contexts.mapIt(config.dist[T](omega, it, interpretations)).filter()
 
-proc delta*(
-  config: RevisionOperatorConfig,
+proc delta*[T](
+  config: RevisionOperatorConfig[T],
   self: PropLogicFormula,
   contexts: seq[PropLogicFormula],
   interpretations: seq[Interpretation]

@@ -19,7 +19,7 @@ proc df[T](
   contexts: seq[PropLogicFormula],
   interpretations: seq[Interpretation]
 ): seq[T] =
-  contexts.mapIt(config.dist[T](omega, it, interpretations)).filter()
+  contexts.mapIt(dist[T](dist, omega, it, interpretations)).filter()
 
 proc delta*[T](
   config: RevisionOperatorConfig[T],

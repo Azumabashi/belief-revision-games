@@ -2,6 +2,7 @@ import propositionalLogic
 import types
 import sequtils
 import algorithm
+import tables
 
 proc dist[T](
   config: RevisionOperatorConfig[T],
@@ -25,7 +26,8 @@ proc delta*[T](
   config: RevisionOperatorConfig[T],
   self: PropLogicFormula,
   contexts: seq[PropLogicFormula],
-  interpretations: seq[Interpretation]
+  interpretations: seq[Interpretation],
+  allFormulae: seq[PropLogicFormula]
 ): PropLogicFormula =
   if contexts.len == 0:
     return self
@@ -36,4 +38,12 @@ proc delta*[T](
       df[T](config, y, contexts, interpretations),
     )
   )
-  # ToDo: returns one of the formulae satisfied by an interpretation
+  let 
+    choicedModel = models[models.len - 1]
+    currentAtoms = choicedModel.keys.toSeq.mapIt(
+      if choicedModel[it] == TOP: allFormulae[it] else: !allFormulae[it]
+    )
+  currentAtoms[1..<currentAtoms.len].foldl(
+    (a & b),
+    currentAtoms[0]
+  )

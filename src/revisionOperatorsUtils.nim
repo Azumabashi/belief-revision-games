@@ -11,7 +11,7 @@ proc dist[T](
 ): float =
   var dists = interpretations.filterIt(formula.isSat(it)).mapIt(config.distance(omega, it))
   dists.sort(config.cmp)
-  return dists
+  return dists[0]
 
 proc df[T](
   config: RevisionOperatorConfig[T],

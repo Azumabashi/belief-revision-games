@@ -21,7 +21,7 @@ proc df[T](
 ): seq[T] =
   contexts.mapIt(config.dist(omega, it, interpretations)).filter()
 
-proc delta(
+proc delta*(
   config: RevisionOperatorConfig,
   self: PropLogicFormula,
   contexts: seq[PropLogicFormula],

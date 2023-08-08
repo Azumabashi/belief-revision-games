@@ -32,8 +32,8 @@ proc delta*[T](
   var models = self.getModels(interpretations)
   models.sort(
     proc (x, y: Interpretation): int = config.cmp(
-      config.df(x, contexts, interpretations),
-      config.df(y, contexts, interpretations),
+      df[T](config, x, contexts, interpretations),
+      df[T](config, y, contexts, interpretations),
     )
   )
   # ToDo: returns one of the formulae satisfied by an interpretation

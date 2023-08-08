@@ -6,7 +6,7 @@ type
     belief*: PropLogicFormula
   BeliefRevisionGame* = object
     agents*: seq[Agent]
-    connection*: seq[seq[bool]]
+    connection*: seq[seq[int]]
     atomicFormulae*: seq[PropLogicFormula]
     revisionOperators*: seq[proc (self: PropLogicFormula, context: seq[PropLogicFormula], interpretations: seq[Interpretation]): PropLogicFormula{.nimcall.}]
   RevisionOperatorConfig*[T] = object

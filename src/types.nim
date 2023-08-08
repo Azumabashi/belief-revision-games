@@ -8,7 +8,7 @@ type
     agents*: seq[Agent]
     connection*: seq[seq[int]]
     atomicFormulae*: seq[PropLogicFormula]
-    revisionOperators*: seq[proc (self: PropLogicFormula, context: seq[PropLogicFormula], interpretations: seq[Interpretation]): PropLogicFormula{.nimcall.}]
+    revisionOperators*: seq[proc (self: PropLogicFormula, context: seq[PropLogicFormula], interpretations: seq[Interpretation]): PropLogicFormula{.nimcall, closure.}]
   RevisionOperatorConfig*[T] = object
     distance*: proc(x, y: Interpretation): float
     filter*: proc(x: seq[float]): T

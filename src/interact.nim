@@ -2,7 +2,7 @@ import types
 import sequtils
 import propositionalLogic
 
-proc interact*(G: BeliefRevisionGame, allInterpretations: seq[Interpretation]): BeliefRevisionGame =
+proc interact*[T](G: BeliefRevisionGame, config: RevisionOperatorConfig[T], allInterpretations: seq[Interpretation]): BeliefRevisionGame =
   var nextAgents: seq[Agent] = @[]
   for agentId in 0..<G.agents.len:
     let 
@@ -10,7 +10,7 @@ proc interact*(G: BeliefRevisionGame, allInterpretations: seq[Interpretation]): 
       operator = G.revisionOperators[agentId]
     nextAgents.add(Agent(
       id: agentId,
-      belief : operator(G.agents[agentId].belief, context, allInterpretations, G.atomicFormulae)
+      belief : operator(config, G.agents[agentId].belief, context, allInterpretations, G.atomicFormulae)
     ))
   BeliefRevisionGame(
     agents: nextAgents,

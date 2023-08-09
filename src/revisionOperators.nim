@@ -1,18 +1,12 @@
 import revisionOperatorsUtils
 import propositionalLogic
-import math
 import types
-import distance
 
-proc revision3*(
+proc revision3*[T](
+  config: RevisionOperatorConfig[T],
   self: PropLogicFormula,
   context: seq[PropLogicFormula],
   interpretations: seq[Interpretation],
   allFormulae: seq[PropLogicFormula]
 ): PropLogicFormula =
-  let config = RevisionOperatorConfig[float](
-    distance: drasticDistance,
-    filter: proc(x: seq[float]): float = x.sum,
-    cmp: cmp
-  )
-  delta[float](config, self, context, interpretations, allFormulae)
+  delta[T](config, self, context, interpretations, allFormulae)

@@ -23,4 +23,6 @@ suite "test for revision3":
       belief = s & (b => q)
       context = @[(!s) & b, !s]
       newBelief = config.revision3(belief, context, allInterpretations, allFormulae)
+    # ToDo: compare `newBelief` with ((q & s) & (!b))
+    # This should be equal to ((q & s) & (!b)), but proc `==` between PropLogicFormula is not implemented yet.
     echo newBelief

@@ -6,22 +6,39 @@ import distance
 import math
 
 suite "test for revision3":
-  setup:
-    let 
-      s = generateAtomicProp()
-      b = generateAtomicProp()
-      q = generateAtomicProp()
-      config = RevisionOperatorConfig[float](
-        distance: hammingDistance,
-        filter: proc(x: seq[float]): float = x.sum,
-        cmp: cmp
-      )
+  let 
+    s = generateAtomicProp()
+    b = generateAtomicProp()
+    q = generateAtomicProp()
+    config = RevisionOperatorConfig[float](
+      distance: hammingDistance,
+      filter: proc(x: seq[float]): float = x.sum,
+      cmp: cmp
+    )
+    alice = !s & b
+    bob = s & (b => q)
+    charles = !s
   
-  test "revision by revision3":
-    let 
-      belief = s & (b => q)
-      context = @[(!s) & b, !s]
+  test "revision by revision3 for alice":
+    let
+      belief = alice
+      context = @[bob]
       newBelief = revision3[float](config, belief, context)
-    # ToDo: compare `newBelief` with ((q & s) & (!b))
-    # This should be equal to ((q & s) & (!b)), but proc `==` between PropLogicFormula is not implemented yet.
-    echo newBelief
+      expected = b & q
+    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+  
+  test "revision by revision3 for bob":
+    let 
+      belief = bob
+      context = @[alice, charles]
+      newBelief = revision3[float](config, belief, context)
+      expected = ((!s & b) & q)
+    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+
+  test "revision by revision3 for charles":
+    let 
+      belief = charles
+      context = @[bob]
+      newBelief = revision3[float](config, belief, context)
+      expected = b => q
+    check ((newBelief => expected) & (expected => newBelief)).isTautology()

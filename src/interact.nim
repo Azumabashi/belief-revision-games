@@ -10,11 +10,10 @@ proc interact*[T](G: BeliefRevisionGame, config: RevisionOperatorConfig[T], allI
       operator = G.revisionOperators[agentId]
     nextAgents.add(Agent(
       id: agentId,
-      belief : operator(config, G.agents[agentId].belief, context, allInterpretations, G.atomicFormulae)
+      belief : operator(config, G.agents[agentId].belief, context)
     ))
   BeliefRevisionGame(
     agents: nextAgents,
     connection: G.connection,
-    atomicFormulae: G.atomicFormulae,
     revisionOperators: G.revisionOperators
   )

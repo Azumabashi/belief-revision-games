@@ -23,10 +23,12 @@ proc df[T](
 ): T =
   config.filter(contexts.mapIt(dist[T](config, omega, it)))
 
-proc generateLiteral(id: int, negation: bool = false): PropLogicFormula =
-  result = generateAtomicPropWithGivenId(id)
-  if negation:
-    result = !result
+proc interpretationToFormula(interpretation: Interpretation): PropLogicFormula =
+  var formulae: seq[PropLogicFormula] = @[]
+  for id in interpretation.keys():
+    let formula = generateAtomicPropWithGivenId(id)
+    formulae.add(if interpretation[id] == TOP: formula else: !formula)
+  formulae.foldl(a & b)
 
 proc delta*[T](
   config: RevisionOperatorConfig[T],
@@ -36,17 +38,11 @@ proc delta*[T](
 ): PropLogicFormula =
   if contexts.len == 0:
     return self
-  let 
-    choicedModel = models.sorted(
-      proc (x, y: Interpretation): int = config.cmp(
-        df[T](config, x, contexts),
-        df[T](config, y, contexts),
-      )
-    )[models.len - 1]
-    currentAtoms = choicedModel.keys.toSeq.mapIt(
-      generateLiteral(it, choicedModel[it] == TOP)
-    )
-  currentAtoms[1..<currentAtoms.len].foldl(
-    (a & b),
-    currentAtoms[0]
-  )
+  var
+    dfInterpretationPairs = models.mapIt((df[T](config, it, contexts), it))
+  dfInterpretationPairs.sort(proc (x, y: (T, Interpretation)): int = config.cmp(x[0], y[0]))
+  let
+    choicedFormula = dfInterpretationPairs.filterIt(
+      it[0] == dfInterpretationPairs[0][0]
+    ).mapIt(it[1].interpretationToFormula())
+  choicedFormula.foldl(a | b).simplification()

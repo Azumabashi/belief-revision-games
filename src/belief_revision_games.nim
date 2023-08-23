@@ -40,5 +40,5 @@ var
     revisionOperators: @[revision3[float], revision3[float], revision3[float]]
   )
 for _ in 0..<5:
-  G = G.interact(config, allInterpretations)
+  G = G.interact(config)
   echo G.agents.mapIt(it.belief)

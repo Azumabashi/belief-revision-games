@@ -1,8 +1,7 @@
 import types
 import sequtils
-import propositionalLogic
 
-proc interact*[T](G: BeliefRevisionGame, config: RevisionOperatorConfig[T], allInterpretations: seq[Interpretation]): BeliefRevisionGame =
+proc interact*[T](G: BeliefRevisionGame, config: RevisionOperatorConfig[T]): BeliefRevisionGame =
   var nextAgents: seq[Agent] = @[]
   for agentId in 0..<G.agents.len:
     let 

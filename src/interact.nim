@@ -1,6 +1,5 @@
 import types
 import sequtils
-import propositionalLogic
 
 proc interact*[T](G: BeliefRevisionGame, config: RevisionOperatorConfig[T]): BeliefRevisionGame =
   var nextAgents: seq[Agent] = @[]

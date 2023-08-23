@@ -23,11 +23,6 @@ proc df[T](
 ): T =
   config.filter(contexts.mapIt(dist[T](config, omega, it)))
 
-proc generateLiteral(id: int, negation: bool = false): PropLogicFormula =
-  result = generateAtomicPropWithGivenId(id)
-  if negation:
-    result = !result
-
 proc interpretationToFormula(interpretation: Interpretation): PropLogicFormula =
   var formulae: seq[PropLogicFormula] = @[]
   for id in interpretation.keys():

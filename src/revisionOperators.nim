@@ -8,4 +8,4 @@ proc revision3*[T](
   self: PropLogicFormula,
   context: seq[PropLogicFormula],
 ): PropLogicFormula =
-  delta[T](config, self, context, interpretations().toSeq())
+  delta[T](config, self, context.concat(@[self]), interpretations().toSeq())

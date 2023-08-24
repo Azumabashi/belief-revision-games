@@ -5,7 +5,6 @@ author        = "Azumabashi"
 description   = "Unofficial implemention of belief revision games"
 license       = "MIT"
 srcDir        = "src"
-bin           = @["belief_revision_games"]
 
 
 # Dependencies

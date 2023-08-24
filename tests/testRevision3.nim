@@ -1,8 +1,6 @@
 import unittest
 import propositionalLogic
-import revisionOperators
-import types
-import distance
+import belief_revision_games
 import math
 
 suite "test for revision3":

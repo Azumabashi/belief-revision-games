@@ -8,11 +8,7 @@ suite "test for revision1":
     s = generateAtomicProp()
     b = generateAtomicProp()
     q = generateAtomicProp()
-    config = RevisionOperatorConfig[float](
-      distance: hammingDistance,
-      filter: proc(x: seq[float]): float = x.sum,
-      cmp: cmp
-    )
+    config = summentionConfig(hammingDistance)
     alice = !s & b
     bob = s & (b => q)
     charles = !s

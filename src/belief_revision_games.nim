@@ -41,11 +41,7 @@ runnableExamples:
       id: 2,
       belief: !s
     )
-    config = RevisionOperatorConfig[float](
-      distance: hammingDistance,
-      filter: proc(x: seq[float]): float = x.sum,
-      cmp: cmp
-    )
+    config = summentionConfig()
   var
     G = BeliefRevisionGame[float](
       agents: @[alice, bob, charlie],

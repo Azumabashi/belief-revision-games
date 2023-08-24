@@ -32,3 +32,11 @@ proc revision4*[T](
 ): PropLogicFormula =
   let mu = delta[T](config, self, context, interpretations().toSeq())
   delta[T](config, self, @[self, mu], interpretations().toSeq())
+
+proc revision5*[T](
+  config: RevisionOperatorConfig[T],
+  self: PropLogicFormula,
+  context: seq[PropLogicFormula]
+): PropLogicFormula =
+  let shrinked = delta[T](config, self, context, interpretations().toSeq())
+  delta[T](config, self, @[shrinked], self.getModels())

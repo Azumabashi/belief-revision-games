@@ -8,11 +8,7 @@ suite "test for drastic distance":
     s = generateAtomicProp()
     b = generateAtomicProp()
     q = generateAtomicProp()
-    config = RevisionOperatorConfig[float](
-      distance: drasticDistance,
-      filter: proc(x: seq[float]): float = x.sum,
-      cmp: cmp
-    )
+    config = summentionConfig(drasticDistance)
     alice = !s & b
     bob = s & (b => q)
     charles = !s

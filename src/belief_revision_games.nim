@@ -3,13 +3,15 @@ import belief_revision_games/revisionOperators
 import belief_revision_games/revisionOperatorsUtils
 import belief_revision_games/distance
 import belief_revision_games/interact
+import belief_revision_games/configs
 
 export
   drasticDistance, hammingDistance,
   interact,
   revision1, revision2, revision3, revision4, revision5, revision6,
   delta,
-  Agent, BeliefRevisionGame, RevisionOperatorConfig
+  Agent, BeliefRevisionGame, RevisionOperatorConfig,
+  summentionConfig, gminConfig
 
 runnableExamples:
   import propositionalLogic
@@ -39,11 +41,7 @@ runnableExamples:
       id: 2,
       belief: !s
     )
-    config = RevisionOperatorConfig[float](
-      distance: hammingDistance,
-      filter: proc(x: seq[float]): float = x.sum,
-      cmp: cmp
-    )
+    config = summentionConfig()
   var
     G = BeliefRevisionGame[float](
       agents: @[alice, bob, charlie],

@@ -45,4 +45,5 @@ proc delta*[T](
     choicedFormula = dfInterpretationPairs.filterIt(
       it[0] == dfInterpretationPairs[0][0]
     ).mapIt(it[1].interpretationToFormula())
-  choicedFormula.foldl(a | b).simplification()
+  # temporary does not execute simplification because this proc has a bug
+  choicedFormula.foldl(a | b)#.simplification()

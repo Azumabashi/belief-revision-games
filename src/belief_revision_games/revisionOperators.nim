@@ -16,7 +16,7 @@ proc revision2*[T](
   context: seq[PropLogicFormula]
 ): PropLogicFormula =
   let mu = delta[T](config, self, context, interpretations().toSeq())
-  delta[T](config, mu, self, mu.getModels())
+  delta[T](config, mu, @[self], mu.getModels())
 
 proc revision3*[T](
   config: RevisionOperatorConfig[T],

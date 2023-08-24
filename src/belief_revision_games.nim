@@ -1,8 +1,8 @@
 import propositionalLogic
-import types
-import revisionOperators
-import distance
-import interact
+import belief_revision_games/types
+import belief_revision_games/revisionOperators
+import belief_revision_games/distance
+import belief_revision_games/interact
 import sequtils
 import math
 

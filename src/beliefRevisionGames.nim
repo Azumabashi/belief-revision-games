@@ -41,7 +41,7 @@ runnableExamples:
       id: 2,
       belief: !s
     )
-    config = summentionConfig()
+    config = summentionConfig(hammingDistance)
   var
     G = BeliefRevisionGame[float](
       agents: @[alice, bob, charlie],

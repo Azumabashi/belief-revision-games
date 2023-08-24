@@ -11,4 +11,4 @@ bin           = @["belief_revision_games"]
 # Dependencies
 
 requires "nim >= 2.0.0"
-requires "propositionalLogic >= 2.2.2"
+requires "propositionalLogic >= 2.3.0"

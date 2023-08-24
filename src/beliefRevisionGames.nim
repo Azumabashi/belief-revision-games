@@ -1,9 +1,9 @@
-import belief_revision_games/types
-import belief_revision_games/revisionOperators
-import belief_revision_games/revisionOperatorsUtils
-import belief_revision_games/distance
-import belief_revision_games/interact
-import belief_revision_games/configs
+import beliefRevisionGames/types
+import beliefRevisionGames/revisionOperators
+import beliefRevisionGames/revisionOperatorsUtils
+import beliefRevisionGames/distance
+import beliefRevisionGames/interact
+import beliefRevisionGames/configs
 
 export
   drasticDistance, hammingDistance,
@@ -17,7 +17,7 @@ runnableExamples:
   import propositionalLogic
   import sequtils
   import math
-  import belief_revision_games
+  import beliefRevisionGames
   
   const
     connection = @[

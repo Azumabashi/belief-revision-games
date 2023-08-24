@@ -3,13 +3,15 @@ import belief_revision_games/revisionOperators
 import belief_revision_games/revisionOperatorsUtils
 import belief_revision_games/distance
 import belief_revision_games/interact
+import belief_revision_games/configs
 
 export
   drasticDistance, hammingDistance,
   interact,
   revision1, revision2, revision3, revision4, revision5, revision6,
   delta,
-  Agent, BeliefRevisionGame, RevisionOperatorConfig
+  Agent, BeliefRevisionGame, RevisionOperatorConfig,
+  summentionConfig, gminConfig
 
 runnableExamples:
   import propositionalLogic

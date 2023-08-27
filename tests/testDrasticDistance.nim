@@ -1,7 +1,6 @@
 import unittest
 import propositionalLogic
 import beliefRevisionGames
-import math
 
 suite "test for drastic distance":
   let 
@@ -18,21 +17,21 @@ suite "test for drastic distance":
       belief = alice
       context = @[bob]
       newBelief = revision3[float](config, belief, context)
-      expected = (s & !b) | (!s & b) | (s & q) | (b & q)   # ToDo: check whether this is correct or not
-    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+      expected = !((s & b & !q) | (!s & !b))
+    check newBelief.iff(expected)
   
   test "revision by drastic distance for bob":
     let 
       belief = bob
       context = @[alice, charles]
       newBelief = revision3[float](config, belief, context)
-      expected = !s & b  # ToDo: check whether this is correct or not
-    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+      expected = !s & b
+    check newBelief.iff(expected)
 
   test "revision by drastic distance for charles":
     let 
       belief = charles
       context = @[bob]
       newBelief = revision3[float](config, belief, context)
-      expected = !s | !b | q  # ToDo: check whether this is correct or not
-    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+      expected = !(s & b & !q)
+    check newBelief.iff(expected)

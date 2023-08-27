@@ -17,12 +17,11 @@ suite "test for preset configs":
       config = summentionConfig(hammingDistance)
       expected = (a & !b) | (!a & b)
       newBelief = delta[float](config, mu, profile, mu.getModels())
-    echo newBelief
-    check ((expected => newBelief) & (newBelief => expected)).isTautology()
+    check newBelief.iff(expected)
   
   test "GMin":
     let 
       config = gminConfig(hammingDistance)
       expected = a & b
       newBelief = delta[seq[float]](config, mu, profile, mu.getModels())
-    check ((expected => newBelief) & (newBelief => expected)).isTautology()
+    check newBelief.iff(expected)

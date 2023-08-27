@@ -19,7 +19,7 @@ suite "test for revision3":
       context = @[bob]
       newBelief = revision3[float](config, belief, context)
       expected = b & q
-    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+    check newBelief.iff(expected)
   
   test "revision by revision3 for bob":
     let 
@@ -27,7 +27,7 @@ suite "test for revision3":
       context = @[alice, charles]
       newBelief = revision3[float](config, belief, context)
       expected = ((!s & b) & q)
-    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+    check newBelief.iff(expected)
 
   test "revision by revision3 for charles":
     let 
@@ -35,4 +35,4 @@ suite "test for revision3":
       context = @[bob]
       newBelief = revision3[float](config, belief, context)
       expected = b => q
-    check ((newBelief => expected) & (expected => newBelief)).isTautology()
+    check newBelief.iff(expected)

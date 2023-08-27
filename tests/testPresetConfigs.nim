@@ -17,7 +17,6 @@ suite "test for preset configs":
       config = summentionConfig(hammingDistance)
       expected = (a & !b) | (!a & b)
       newBelief = delta[float](config, mu, profile, mu.getModels())
-    echo newBelief
     check newBelief.iff(expected)
   
   test "GMin":

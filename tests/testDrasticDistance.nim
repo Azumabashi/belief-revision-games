@@ -18,7 +18,7 @@ suite "test for drastic distance":
       belief = alice
       context = @[bob]
       newBelief = revision3[float](config, belief, context)
-      expected = (s & !b) | (!s & b) | (s & q) | (b & q)   # ToDo: check whether this is correct or not
+      expected = !((s & b & !q) | (!s & !b))
     check ((newBelief => expected) & (expected => newBelief)).isTautology()
   
   test "revision by drastic distance for bob":
@@ -26,7 +26,7 @@ suite "test for drastic distance":
       belief = bob
       context = @[alice, charles]
       newBelief = revision3[float](config, belief, context)
-      expected = !s & b  # ToDo: check whether this is correct or not
+      expected = !s & b
     check ((newBelief => expected) & (expected => newBelief)).isTautology()
 
   test "revision by drastic distance for charles":
@@ -34,5 +34,5 @@ suite "test for drastic distance":
       belief = charles
       context = @[bob]
       newBelief = revision3[float](config, belief, context)
-      expected = !s | !b | q  # ToDo: check whether this is correct or not
+      expected = !(s & b & !q)
     check ((newBelief => expected) & (expected => newBelief)).isTautology()

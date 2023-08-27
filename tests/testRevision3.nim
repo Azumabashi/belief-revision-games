@@ -1,7 +1,6 @@
 import unittest
 import propositionalLogic
 import beliefRevisionGames
-import math
 
 suite "test for revision3":
   let 

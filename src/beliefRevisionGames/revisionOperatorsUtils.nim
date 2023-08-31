@@ -25,9 +25,9 @@ proc df[T](
 
 proc interpretationToFormula(interpretation: Interpretation): PropLogicFormula =
   var formulae: seq[PropLogicFormula] = @[]
-  for id in interpretation.keys():
-    let formula = generateAtomicPropWithGivenId(id)
-    formulae.add(if interpretation[id] == TOP: formula else: !formula)
+  for atomicProposition in interpretation.keys():
+    let formula = generateAtomicPropWithGivenId(atomicProposition.getId())
+    formulae.add(if interpretation[atomicProposition] == TOP: formula else: !formula)
   formulae.foldl(a & b)
 
 proc delta*[T](

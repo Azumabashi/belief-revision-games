@@ -10,7 +10,7 @@ export
   interact,
   revision1, revision2, revision3, revision4, revision5, revision6,
   delta,
-  Agent, BeliefRevisionGame, RevisionOperatorConfig,
+  BRGAgent, BeliefRevisionGame, RevisionOperatorConfig,
   summentionConfig, gminConfig
 
 runnableExamples:
@@ -29,15 +29,15 @@ runnableExamples:
     s = generateAtomicProp()
     b = generateAtomicProp()
     q = generateAtomicProp()
-    alice = Agent(
+    alice = BRGAgent(
       id: 0,
       belief: (!s) & b
     )
-    bob = Agent(
+    bob = BRGAgent(
       id: 1,
       belief: s & (b => q)
     )
-    charlie = Agent(
+    charlie = BRGAgent(
       id: 2,
       belief: !s
     )

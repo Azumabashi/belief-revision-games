@@ -1,11 +1,11 @@
 import propositionalLogic
 
 type
-  Agent* = object
+  BRGAgent* = object
     id*: int
     belief*: PropLogicFormula
   BeliefRevisionGame*[T] = object
-    agents*: seq[Agent]
+    agents*: seq[BRGAgent]
     connection*: seq[seq[int]]
     revisionOperators*: seq[proc (config: RevisionOperatorConfig[T], self: PropLogicFormula, context: seq[PropLogicFormula]): PropLogicFormula {.nimcall.}]
   RevisionOperatorConfig*[T] = object

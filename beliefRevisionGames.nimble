@@ -9,5 +9,5 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 2.0.0"
-requires "propositionalLogic >= 3.0.0"
+requires "nim >= 1.6.16"
+requires "propositionalLogic >= 3.3.0"

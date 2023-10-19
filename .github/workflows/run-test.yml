@@ -4,6 +4,7 @@ on:
     paths:
       - 'src/**/*.nim'
       - 'tests/**/*.nim'
+      - '.github/workflows/run-test.yml'
 
 jobs:
   run-test:

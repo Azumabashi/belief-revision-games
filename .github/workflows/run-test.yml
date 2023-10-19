@@ -18,6 +18,6 @@ jobs:
         with:
           nim-version: ${{matrix.nim-version}}
       - name: install dependencies
-        run: nimble install propositionalLogic
+        run: nimble install -y propositionalLogic
       - name: execute test programs
         run: nimble test

@@ -20,4 +20,4 @@ jobs:
       - name: install dependencies
         run: nimble install propositionalLogic
       - name: execute test programs
-        run: nim c -r tests/testRevision3
+        run: nimble test
